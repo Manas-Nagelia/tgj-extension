@@ -1,0 +1,22 @@
+# Ignore build/output directories
+dist/
+build/
+out/
+
+# OS, editor, and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node dependencies and logs
+node_modules/
+*.log
+
+# Compiled or generated files
+*.map
+*.tsbuildinfo
+
+# Extension-specific artifacts (if applicable)
+extension.zip
+*.crx

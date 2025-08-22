@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "rolldown -c && mkdir -p dist/styles && cp src/styles/ui.css dist/styles/ui.css",
+    "watch": "rolldown -c --watch"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/chrome": "^0.1.4",
+    "@types/node": "^24.3.0",
+    "rolldown": "^1.0.0-beta.24",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0"
+  }
+}
