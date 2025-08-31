@@ -29,7 +29,6 @@ export function clearBadge() {
 
 export function setBadgeContent(biasRating: number, explanation: string) {
   const root = document.getElementById(ROOT_ID);
-
   if (!root) return;
 
   // --- Map rating -> label/color ---
@@ -55,15 +54,32 @@ export function setBadgeContent(biasRating: number, explanation: string) {
 
   document.documentElement.style.setProperty("--gj-bg", bgColor);
 
-  // --- Badge (collapsed state) ---
+  // Helpers
+  const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+  const toPct = (val: number) => ((clamp(val, -1, 1) + 1) / 2) * 100;
+
+  // Prebuild ticks for -1, -0.5, 0, 0.5, 1
+  const tickValues = [-1, -0.5, 0, 0.5, 1];
+  const ticksHTML = tickValues
+    .map(v => {
+      const left = toPct(v);
+      const label = v === 0 ? "0" : (v > 0 ? `+${v}` : `${v}`);
+      return `
+        <span class="gj-tick" style="left:${left}%"></span>
+        <span class="gj-tick-label" style="left:${left}%">${label}</span>
+      `;
+    })
+    .join("");
+
+  // --- Badge (collapsed) ---
   const badge = document.createElement("button");
   badge.className = "gj-badge";
   badge.setAttribute("aria-label", "Open The Genuine Journal Bias Rating");
   badge.innerHTML = `
-      <span class="gj-dot" aria-hidden="true"></span>
-      <span class="gj-title">The Genuine Journal</span>
-      <span class="gj-sub">Bias Rating: ${label}</span>
-    `;
+    <span class="gj-dot" aria-hidden="true"></span>
+    <span class="gj-title">The Genuine Journal</span>
+    <span class="gj-sub">Bias Rating: ${label}</span>
+  `;
 
   // --- Panel (expanded) ---
   const panel = document.createElement("div");
@@ -71,28 +87,41 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   panel.setAttribute("role", "dialog");
   panel.setAttribute("aria-modal", "false");
   panel.setAttribute("aria-label", "The Genuine Journal Bias Details");
-  panel.innerHTML = `
-      <h3>The Genuine Journal Bias Rating</h3>
-      <div class="gj-row">
-        <span class="gj-chip">${label}</span>
-        <span class="gj-chip">Score: ${biasRating.toFixed(2)}</span>
-      </div>
-      <div class="gj-meter-wrap" aria-label="Bias meter" title="−1 = Left, 0 = Center, +1 = Right">
-        <div class="gj-meter" data-val="${biasRating}"></div>
-      </div>
-      <div style="height:10px"></div>
-      <div class="gj-expl">${escapeHTML(explanation)}</div>
-      <div class="gj-footer">
-        <a class="gj-link" href="https://thegenuinejournal.com" target="_blank" rel="noopener noreferrer">About this rating</a>
-        <button class="gj-close" type="button">Close</button>
-      </div>
-    `;
 
-  const meter: any = panel.querySelector(".gj-meter");
-  if (meter) {
-    const pct = ((biasRating + 1) / 2) * 100; // [-1,1] -> [0,100]
-    meter.style.width = `${pct}%`;
-  }
+  // Number line markup
+  const markerLeft = toPct(biasRating);
+  panel.innerHTML = `
+    <h3>The Genuine Journal Bias Rating</h3>
+    <div class="gj-row">
+      <span class="gj-chip">${label}</span>
+      <span class="gj-chip">Score: ${biasRating.toFixed(2)}</span>
+    </div>
+
+    <div class="gj-numberline" role="img" aria-label="Bias number line from −1 (Left) to +1 (Right)">
+      <div class="gj-track"></div>
+      <div class="gj-ticks-wrap">
+        ${ticksHTML}
+      </div>
+      <div
+        class="gj-marker"
+        style="left:${markerLeft}%"
+        aria-label="Bias position"
+        title="${biasRating.toFixed(2)}"
+      >
+        <span class="gj-marker-dot" aria-hidden="true"></span>
+      </div>
+      <div class="gj-ends">
+        <span class="gj-end-left">Left</span>
+        <span class="gj-end-right">Right</span>
+      </div>
+    </div>
+
+    <div class="gj-expl">${escapeHTML(explanation)}</div>
+    <div class="gj-footer">
+      <a class="gj-link" href="https://thegenuinejournal.com" target="_blank" rel="noopener noreferrer">About this rating</a>
+      <button class="gj-close" type="button">Close</button>
+    </div>
+  `;
 
   // Toggle logic
   const toggle = () => panel.classList.toggle("show");
@@ -103,4 +132,3 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   root.appendChild(panel);
   document.body.appendChild(root);
 }
-

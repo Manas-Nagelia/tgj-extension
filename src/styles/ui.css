@@ -171,3 +171,70 @@
     transform: rotate(360deg);
   }
 }
+
+/* Number line */
+.gj-numberline {
+  position: relative;
+  margin: 12px 0 8px;
+  padding: 18px 0 24px; /* room for ticks/labels */
+}
+
+.gj-track {
+  height: 4px;
+  background: var(--gj-track, #e5e7eb);
+  border-radius: 9999px;
+  position: relative;
+}
+
+.gj-ticks-wrap {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  height: 4px;
+}
+
+.gj-tick {
+  position: absolute;
+  width: 1px;
+  height: 10px;
+  top: -3px;
+  background: #9ca3af;
+  transform: translateX(-0.5px);
+}
+
+.gj-tick-label {
+  position: absolute;
+  top: 10px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.gj-marker {
+  position: absolute;
+  top: -6px;
+  transform: translateX(-50%);
+}
+
+.gj-marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--gj-bg, #2e2f30);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--gj-bg, #2e2f30);
+  display: inline-block;
+}
+
+.gj-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 8px;
+}
+
+.gj-end-left { user-select: none; }
+.gj-end-right { user-select: none; }
+
