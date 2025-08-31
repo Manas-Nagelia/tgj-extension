@@ -35,7 +35,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   let label = "Unknown";
   let bgColor = "#2e2f30";
 
-  if (biasRating <= -0.75) {
+  if (biasRating <= -0.7) {
     label = "Left Wing";
     bgColor = "#3b82f6";
   } else if (biasRating < -0.25) {
@@ -44,7 +44,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   } else if (biasRating <= 0.25) {
     label = "Center";
     bgColor = "#2e2f30";
-  } else if (biasRating < 0.75) {
+  } else if (biasRating < 0.7) {
     label = "Lean Right";
     bgColor = "#ef4444";
   } else if (biasRating <= 1) {
