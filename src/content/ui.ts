@@ -91,7 +91,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   // Number line markup
   const markerLeft = toPct(biasRating);
   panel.innerHTML = `
-    <h3>The Genuine Journal Bias Rating</h3>
+    <h3 style="font-family:inherit">The Genuine Journal Bias Rating</h3>
     <div class="gj-row">
       <span class="gj-chip">${label}</span>
       <span class="gj-chip">Score: ${biasRating.toFixed(2)}</span>

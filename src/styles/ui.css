@@ -189,7 +189,7 @@
 .gj-ticks-wrap {
   position: absolute;
   left: 0; right: 0;
-  top: 0;
+  top: 25px;
   height: 4px;
 }
 
@@ -213,7 +213,7 @@
 
 .gj-marker {
   position: absolute;
-  top: -6px;
+  top: 10px;
   transform: translateX(-50%);
 }
 
@@ -232,7 +232,7 @@
   justify-content: space-between;
   font-size: 11px;
   color: #9ca3af;
-  margin-top: 8px;
+  margin-top: 38px;
 }
 
 .gj-end-left { user-select: none; }
