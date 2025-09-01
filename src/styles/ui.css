@@ -89,21 +89,6 @@
   font-size: 12px;
 }
 
-/* Meter */
-.gj-meter-wrap {
-  background: #141a33;
-  border: 1px solid #243057;
-  border-radius: 10px;
-  height: 10px;
-  overflow: hidden;
-}
-
-.gj-meter {
-  height: 100%;
-  background: var(--gj-bg, #a3a3a3);
-  transition: width 0.2s ease;
-}
-
 /* Explanation */
 .gj-expl {
   font-size: 13px;
@@ -175,20 +160,20 @@
 /* Number line */
 .gj-numberline {
   position: relative;
-  margin: 12px 0 8px;
+  margin: 12px 0 20px;
   padding: 18px 0 24px; /* room for ticks/labels */
 }
 
 .gj-track {
   height: 4px;
-  background: var(--gj-track, #e5e7eb);
+  background: linear-gradient(to right, #3b82f6, #7c3aed, #ef4444); /* blue → purple → red */
   border-radius: 9999px;
   position: relative;
 }
 
 .gj-ticks-wrap {
   position: absolute;
-  left: 0; right: 0;
+  left: 1px; right: 1px;
   top: 25px;
   height: 4px;
 }
@@ -221,9 +206,9 @@
   width: 14px;
   height: 14px;
   border-radius: 9999px;
-  background: var(--gj-bg, #2e2f30);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 2px var(--gj-bg, #2e2f30);
+  background: #ffffff;              /* White marker */
+  border: 2px solid #0b1020;        /* Dark border for visibility */
+  box-shadow: 0 0 6px rgba(255,255,255,0.8); /* Glow effect */
   display: inline-block;
 }
 

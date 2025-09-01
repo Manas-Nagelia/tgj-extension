@@ -10,7 +10,7 @@ export function renderLoadingBadge() {
   loadingBadge.className = "gj-badge";
   loadingBadge.innerHTML = `
     <div class="gj-spinner" aria-hidden="true"></div>
-    <span class="gj-title">The Genuine Journal</span>
+    <span class="gj-title">TGJ</span>
     <span class="gj-sub">Loading rating…</span>
   `;
 
@@ -43,7 +43,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
     bgColor = "#60a5fa";
   } else if (biasRating <= 0.25) {
     label = "Center";
-    bgColor = "#2e2f30";
+    bgColor = "#7c3aed";
   } else if (biasRating < 0.7) {
     label = "Lean Right";
     bgColor = "#ef4444";
@@ -63,7 +63,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   const ticksHTML = tickValues
     .map(v => {
       const left = toPct(v);
-      const label = v === 0 ? "0" : (v > 0 ? `+${v}` : `${v}`);
+      const label = ["Left", "Lean L", "Center", "Lean R", "Right"][tickValues.indexOf(v)];
       return `
         <span class="gj-tick" style="left:${left}%"></span>
         <span class="gj-tick-label" style="left:${left}%">${label}</span>
@@ -77,7 +77,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
   badge.setAttribute("aria-label", "Open The Genuine Journal Bias Rating");
   badge.innerHTML = `
     <span class="gj-dot" aria-hidden="true"></span>
-    <span class="gj-title">The Genuine Journal</span>
+    <span class="gj-title">TGJ</span>
     <span class="gj-sub">Bias Rating: ${label}</span>
   `;
 
@@ -94,7 +94,6 @@ export function setBadgeContent(biasRating: number, explanation: string) {
     <h3 style="font-family:inherit">The Genuine Journal Bias Rating</h3>
     <div class="gj-row">
       <span class="gj-chip">${label}</span>
-      <span class="gj-chip">Score: ${biasRating.toFixed(2)}</span>
     </div>
 
     <div class="gj-numberline" role="img" aria-label="Bias number line from −1 (Left) to +1 (Right)">
@@ -109,10 +108,6 @@ export function setBadgeContent(biasRating: number, explanation: string) {
         title="${biasRating.toFixed(2)}"
       >
         <span class="gj-marker-dot" aria-hidden="true"></span>
-      </div>
-      <div class="gj-ends">
-        <span class="gj-end-left">Left</span>
-        <span class="gj-end-right">Right</span>
       </div>
     </div>
 
