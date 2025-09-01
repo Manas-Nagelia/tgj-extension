@@ -1,4 +1,7 @@
 export function isProbablyArticle() {
+  if (location.href.toLowerCase().includes("github.com")) {
+    return false;
+  }
   // Helper: safe meta getter
   const getMeta = (selector: any) => document.querySelector(selector)?.content?.trim().toLowerCase() || "";
 
@@ -35,8 +38,9 @@ export function isProbablyArticle() {
   if (["post", "article"].includes(parselyType)) return true;
 
   // 6) Light: URL heuristics
-  const href = location.href.toLowerCase();
-  if (/(^|\/)(news|article)(\/|$)/.test(href)) return true;
+  // ! COMMENTED OUT BECAUSE ON CERTAIN SITES SUCH AS YOUTUBE OR SHUTTERSTOCK, IT CAUSES FALSE POSITIVES IF YOU SEARCH FOR "ARTICLE"/"NEWS" IN THE URL
+  // const href = location.href.toLowerCase();
+  // if (/(^|\/)(news|article)(\/|$)/.test(href)) return true;
 
   return false;
 }
