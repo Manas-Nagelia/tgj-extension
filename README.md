@@ -1,2 +1,2 @@
 # The Genuine Journal Browser Extension
-The browser extension for The Genuine Journal that give political bias and fact check ratings to news articles.
+The browser extension for The Genuine Journal that gives political bias ratings to news articles.
