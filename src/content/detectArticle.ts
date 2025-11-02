@@ -1,5 +1,42 @@
 export function isProbablyArticle() {
-  if (location.href.toLowerCase().includes("github.com")) {
+  const blacklistedDomains = [
+    "youtube.com",
+    "vimeo.com",
+    "dailymotion.com",
+    "twitch.tv",
+    "spotify.com",
+    "soundcloud.com",
+    "bandcamp.com",
+    "imgur.com",
+    "flickr.com",
+    "pinterest.com",
+    "reddit.com",
+    "twitter.com",
+    "facebook.com",
+    "instagram.com",
+    "linkedin.com",
+    "medium.com", // Medium is a blogging platform, but its articles are often very short and not suitable for detailed analysis
+    "wikipedia.org",
+    "wikimedia.org",
+    "quora.com",
+    "stackexchange.com",
+    "stackoverflow.com",
+    "github.com",
+    "gitlab.com",
+    "bitbucket.org",
+    "news.ycombinator.com",
+    "producthunt.com",
+    "etsy.com",
+    "amazon.com",
+    "ebay.com",
+    "netflix.com",
+    "hulu.com",
+    "chatgpt.com",
+    "openai.com",
+    "vercel.com",
+    "github.io",
+  ];
+  if (blacklistedDomains.includes(location.href.toLowerCase())) {
     return false;
   }
   // Helper: safe meta getter
@@ -26,7 +63,7 @@ export function isProbablyArticle() {
   } catch { /* ignore parse errors */ }
 
   // 3) Medium: structural hints
-  if (document.querySelector("article, [role='article']")) return true;
+  //if (document.querySelector("article, [role='article']")) return true;
 
   // 4) Medium: author / published time style metas
   const hasAuthor = !!getMeta('meta[name="author"]') || !!getMeta('meta[property="article:author"]');
