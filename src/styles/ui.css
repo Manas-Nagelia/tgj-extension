@@ -41,11 +41,13 @@
 .gj-title {
   font-weight: 800;
   letter-spacing: 0.1px;
+  font-size: 16px;
 }
 
 .gj-sub {
   font-weight: 600;
   opacity: 0.95;
+  font-size: 16px;
 }
 
 /* Panel (expanded state) */
@@ -223,3 +225,10 @@
 .gj-end-left { user-select: none; }
 .gj-end-right { user-select: none; }
 
+.gj-note {
+  font-size: 11px;
+  color: #9ca3af;
+  opacity: 0.9;
+  max-width: 240px;
+  line-height: 1.3;
+}

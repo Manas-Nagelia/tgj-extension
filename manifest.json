@@ -2,9 +2,12 @@
   "manifest_version": 3,
   "name": "The Genuine Journal",
   "version": "1.0.0",
-  "description": "The Genuine Journal helps readers evaluate online news by providing bias ratings and fact-check scores directly within the browser. It analyzes articles in real time and displays an easy-to-understand badge with context so you can quickly judge credibility.",
+  "description": "The Genuine Journal shows bias ratings and explanations on news articles directly in your browser.",
 
-  "background": { "service_worker": "dist/background/worker.js", "type": "module" },
+  "background": {
+    "service_worker": "dist/background/worker.js",
+    "type": "module"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -15,7 +18,6 @@
     }
   ],
 
-  "permissions": ["storage"],
   "icons": {
     "16": "icons/logo16.png",
     "32": "icons/logo32.png",
@@ -23,7 +25,7 @@
     "128": "icons/logo128.png"
   },
 
-  "host_permissions": ["http://localhost:3000/*"],
+  "host_permissions": ["https://tgj-api.vercel.app/*"],
 
   "action": {
     "default_title": "The Genuine Journal"

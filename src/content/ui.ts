@@ -113,7 +113,7 @@ export function setBadgeContent(biasRating: number, explanation: string) {
 
     <div class="gj-expl">${escapeHTML(explanation)}</div>
     <div class="gj-footer">
-      <a class="gj-link" href="https://thegenuinejournal.com" target="_blank" rel="noopener noreferrer">About this rating</a>
+      <span class="gj-note">Estimated bias based on language cues and framing.</span>
       <button class="gj-close" type="button">Close</button>
     </div>
   `;

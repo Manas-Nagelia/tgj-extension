@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getBias") {
-    fetch("http://localhost:3000/v1/ai/analyze-article", {
+    fetch("https://tgj-api.vercel.app/v1/ai/analyze-article", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

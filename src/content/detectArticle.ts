@@ -12,11 +12,25 @@ export function isProbablyArticle() {
     "pinterest.com",
     "reddit.com",
     "twitter.com",
+    "google.com",
+    "docs.google.com",
+    "drive.google.com",
+    "dropbox.com",
+    "onedrive.live.com",
+    "box.com",
+    "slides.google.com",
+    "sheets.google.com",
+    "maps.google.com",
+    "yahoo.com",
+    "bing.com",
+    "tumblr.com",
+    "forms.google.com",
     "facebook.com",
     "instagram.com",
     "linkedin.com",
     "medium.com", // Medium is a blogging platform, but its articles are often very short and not suitable for detailed analysis
     "wikipedia.org",
+    "en.wikipedia.org",
     "wikimedia.org",
     "quora.com",
     "stackexchange.com",
@@ -36,7 +50,8 @@ export function isProbablyArticle() {
     "vercel.com",
     "github.io",
   ];
-  if (blacklistedDomains.includes(location.href.toLowerCase())) {
+
+  if (blacklistedDomains.includes(location.hostname.toLowerCase())) {
     return false;
   }
   // Helper: safe meta getter
